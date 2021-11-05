@@ -1,10 +1,12 @@
 import './App.css';
-import Announcements from './components/Announcements/Announcements';
+import NoticeBoard from "./components/NoticeBoard/NoticeBoard";
 
 function App() {
-  return <div className="app-wrapper">
-    <Announcements />
-  </div>;
+  return (
+    <div className="app-wrapper">
+      <NoticeBoard />
+    </div>
+  );
 }
 
 export default App;
