@@ -2,3 +2,28 @@
   display: grid;
   grid-template-columns: 1fr 2fr;
 }
+
+.search {
+  display: flex;
+  flex-direction: row;
+  justify-content: flex-start;
+  align-items: center;
+}
+
+.searchInput {
+  max-height: 20px;
+  margin-left: 10px;
+  margin-right: 10px;
+}
+
+.btn {
+  background-color: var(--main-color);
+  border: none;
+  color: var(--active-color);
+  min-height: 20px;
+}
+
+.btn:hover {
+  background-color: var(--accent-color);
+  cursor: pointer;
+}

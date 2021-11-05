@@ -3,7 +3,8 @@ const UPDATE_NEW_ANNOUNCEMENT_TEXT = "UPDATE-NEW-ANNOUNCEMENT-TEXT";
 const ADD_ANNOUNCEMENT = "ADD-ANNOUNCEMENT";
 const DELETE_ANNOUNCEMENT = "DELETE-ANNOUNCEMENT";
 const EDIT_ANNOUNCEMENT = "EDIT-ANNOUNCEMENT";
-const dayjs = require('dayjs')
+const SEARCH_ANNOUNCEMENT = "SEARCH-ANNOUNCEMENT";
+const dayjs = require("dayjs");
 
 const initialState = {
   announcementData: [
@@ -67,10 +68,12 @@ const announcementsReducer = (state = initialState, action) => {
     }
     case DELETE_ANNOUNCEMENT: {
       const newState = {
-        ...state, announcementData: [
-          ...state.announcementData]
+        ...state,
+        announcementData: [...state.announcementData],
       };
-      const filterdState = newState.announcementData.filter(el => el.id !== action.id);
+      const filterdState = newState.announcementData.filter(
+        (el) => el.id !== action.id
+      );
       return { ...state, announcementData: filterdState };
     }
     case EDIT_ANNOUNCEMENT: {
@@ -78,15 +81,25 @@ const announcementsReducer = (state = initialState, action) => {
         ...state,
         announcementData: [...state.announcementData],
       };
-      newState.announcementData.forEach(el => {
+      newState.announcementData.forEach((el) => {
         if (el.id === action.id) {
           el.title = newState.newAnnouncementTitle;
           el.description = newState.newAnnouncementText;
         }
-      })
+      });
       newState.newAnnouncementTitle = "";
       newState.newAnnouncementText = "";
       return newState;
+    }
+    case SEARCH_ANNOUNCEMENT: {
+        const newState = {
+          ...state,
+          announcementData: [...state.announcementData],
+        };
+        const filterdState = newState.announcementData.filter((el) =>
+          el.title.includes(action.title)
+        );
+        return { ...state, announcementData: filterdState };
     }
     default:
       return state;
@@ -104,8 +117,16 @@ export const updateNewAnnouncementTextAC = (newText) => ({
   newText: newText,
 });
 export const addAnnouncementAC = () => ({ type: ADD_ANNOUNCEMENT });
-export const deleteAnnouncementAC = (id) => ({ type: DELETE_ANNOUNCEMENT, id: id });
+export const deleteAnnouncementAC = (id) => ({
+  type: DELETE_ANNOUNCEMENT,
+  id: id,
+});
 export const editAnnouncementAC = (id) => ({
   type: EDIT_ANNOUNCEMENT,
   id: id,
 });
+export const searchAnnouncementAC = (title) => ({
+  type: SEARCH_ANNOUNCEMENT,
+  title: title,
+});
+

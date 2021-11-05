@@ -4,6 +4,9 @@ import NewAnnouncement from './NewAnnouncement/NewAnnouncement';
 import style from "./Announcements.module.css"
 
 export default function Announcements(props) {
+  const searchByTitle = (event) => {
+    props.searchAnnouncement(event.target.value);
+  }
   return (
     <div className={style.wrapper}>
       <NewAnnouncement
@@ -14,6 +17,10 @@ export default function Announcements(props) {
         updateNewAnnouncementText={props.updateNewAnnouncementText}
       />
       <div>
+        <div className={style.search}>
+          <p>Search by Title</p>
+          <input onChange={searchByTitle} className={style.searchInput}></input>
+        </div>
         {props.announcementData.map((item) => (
           <Item
             key={item.id}
