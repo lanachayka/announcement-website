@@ -1,6 +1,7 @@
-const ADD_ANNOUNCEMENT = "ADD-ANNOUNCEMENT";
-const UPDATE_NEW_ANNOUNCEMENT_TEXT = "UPDATE-NEW-ANNOUNCEMENT-TEXT";
 const UPDATE_NEW_ANNOUNCEMENT_TITLE = "UPDATE-NEW-ANNOUNCEMENT-TITLE";
+const UPDATE_NEW_ANNOUNCEMENT_TEXT = "UPDATE-NEW-ANNOUNCEMENT-TEXT";
+const ADD_ANNOUNCEMENT = "ADD-ANNOUNCEMENT";
+const dayjs = require('dayjs')
 
 const initialState = {
   announcementData: [
@@ -17,17 +18,43 @@ const initialState = {
 };
 
 const announcementsReducer = (state = initialState, action) => {
+  switch (action.type) {
+    case UPDATE_NEW_ANNOUNCEMENT_TITLE: {
+      return { ...state, newAnnouncementTitle: action.newTitle };
+    }
+    case UPDATE_NEW_ANNOUNCEMENT_TEXT: {
+      return { ...state, newAnnouncementText: action.newText };
+    }
+    case ADD_ANNOUNCEMENT: {
+      return {
+        ...state,
+        announcementData: [
+          ...state.announcementData,
+          {
+            id:
+              state.announcementData[state.announcementData.length - 1].id + 1,
+            title: state.newAnnouncementTitle,
+            description: state.newAnnouncementText,
+            dateAdded: dayjs().format("DD.MM.YYYY"),
+          },
+        ],
+        newAnnouncementTitle: "",
+        newAnnouncementText: "",
+      };
+    }
+    default:
       return state;
+  }
 };
 
 export default announcementsReducer;
 
-export const addAnnouncementAC = () => ({ type: ADD_ANNOUNCEMENT });
-export const updateNewAnnouncementTextAC = (newText) => ({
-  type: UPDATE_NEW_ANNOUNCEMENT_TEXT,
-  newText: newText,
-});
 export const updateNewAnnouncementTitleAC = (newTitle) => ({
   type: UPDATE_NEW_ANNOUNCEMENT_TITLE,
   newTitle: newTitle,
 });
+export const updateNewAnnouncementTextAC = (newText) => ({
+  type: UPDATE_NEW_ANNOUNCEMENT_TEXT,
+  newText: newText,
+});
+export const addAnnouncementAC = () => ({ type: ADD_ANNOUNCEMENT });
