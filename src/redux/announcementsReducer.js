@@ -13,6 +13,27 @@ const initialState = {
         "Small grey cat missing in the Less Hall area. She is frightended of dogs and teenage boys. If you see her please phone 09651 324472",
       dateAdded: "04.11.2021",
     },
+    {
+      id: 2,
+      title: "Computer problems?",
+      description:
+        "Experienced IT engineer will sort out problems with home computers. Call me: 09651 325693",
+      dateAdded: "02.11.2021",
+    },
+    {
+      id: 3,
+      title: "TV for sale!",
+      description:
+        "Thomson 32wh412b TV for sale. Diagonal 32. Fully working, remote control available. Suitable for cable and T2. Tel: 09652 355662",
+      dateAdded: "05.10.2021",
+    },
+    {
+      id: 4,
+      title: "Vegetables for sale!",
+      description:
+        "We will sell house potatoes and anouther vegetables, specify the price 0501042169",
+      dateAdded: "01.09.2021",
+    },
   ],
   newAnnouncementTitle: "",
   newAnnouncementText: "",
