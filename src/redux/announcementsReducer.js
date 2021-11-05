@@ -3,7 +3,6 @@ const UPDATE_NEW_ANNOUNCEMENT_TEXT = "UPDATE-NEW-ANNOUNCEMENT-TEXT";
 const ADD_ANNOUNCEMENT = "ADD-ANNOUNCEMENT";
 const DELETE_ANNOUNCEMENT = "DELETE-ANNOUNCEMENT";
 const EDIT_ANNOUNCEMENT = "EDIT-ANNOUNCEMENT";
-const SEARCH_ANNOUNCEMENT = "SEARCH-ANNOUNCEMENT";
 const dayjs = require("dayjs");
 
 const initialState = {
@@ -91,16 +90,6 @@ const announcementsReducer = (state = initialState, action) => {
       newState.newAnnouncementText = "";
       return newState;
     }
-    case SEARCH_ANNOUNCEMENT: {
-        const newState = {
-          ...state,
-          announcementData: [...state.announcementData],
-        };
-        const filterdState = newState.announcementData.filter((el) =>
-          el.title.includes(action.title)
-        );
-        return { ...state, announcementData: filterdState };
-    }
     default:
       return state;
   }
@@ -125,8 +114,5 @@ export const editAnnouncementAC = (id) => ({
   type: EDIT_ANNOUNCEMENT,
   id: id,
 });
-export const searchAnnouncementAC = (title) => ({
-  type: SEARCH_ANNOUNCEMENT,
-  title: title,
-});
+
 

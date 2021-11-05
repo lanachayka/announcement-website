@@ -26,9 +26,6 @@ const mapDispatchToProps = (dispatch) => {
     },
     editAnnouncement: (id) => {
       dispatch(editAnnouncementAC(id));
-    },
-    searchAnnouncement: (title) => {
-      dispatch(searchAnnouncementAC(title));
     }
   };
 };

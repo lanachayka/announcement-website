@@ -2,10 +2,12 @@ import React from 'react'
 import Item from './Item/Item'
 import NewAnnouncement from './NewAnnouncement/NewAnnouncement';
 import style from "./Announcements.module.css"
+import { useState } from "react";
 
 export default function Announcements(props) {
+  const [filter, setFilter] = useState("")
   const searchByTitle = (event) => {
-    props.searchAnnouncement(event.target.value);
+    setFilter(event.target.value.toLowerCase());
   }
   return (
     <div className={style.wrapper}>
@@ -21,7 +23,7 @@ export default function Announcements(props) {
           <p>Search by Title</p>
           <input onChange={searchByTitle} className={style.searchInput}></input>
         </div>
-        {props.announcementData.map((item) => (
+        {props.announcementData.filter(el=>el.title.toLowerCase().includes(filter)).map((item) => (
           <Item
             key={item.id}
             id={item.id}
