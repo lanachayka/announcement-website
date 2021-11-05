@@ -22,6 +22,11 @@ export default function Announcements(props) {
             description={item.description}
             dateAdded={item.dateAdded}
             deleteAnnouncement={props.deleteAnnouncement}
+            updateNewAnnouncementText={props.updateNewAnnouncementText}
+            newAnnouncementText={props.newAnnouncementText}
+            updateNewAnnouncementTitle={props.updateNewAnnouncementTitle}
+            newAnnouncementTitle={props.newAnnouncementTitle}
+            editAnnouncement={props.editAnnouncement}
           />
         ))}
       </div>

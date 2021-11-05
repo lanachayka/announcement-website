@@ -23,13 +23,11 @@ export default function NewAnnouncement({
     <div className={style.wrapper}>
       <input
         onChange={onTitleChange}
-        value={newAnnouncementTitle}
         className={style.input}
         placeholder="Title..."
       ></input>
       <textarea
         onChange={onTextChange}
-        value={newAnnouncementText}
         className={style.textarea}
         placeholder="Your announcement..."
       ></textarea>
