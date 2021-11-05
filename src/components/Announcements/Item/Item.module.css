@@ -16,3 +16,23 @@
     padding-left: 10px;
     padding-right: 10px
 }
+
+.buttons {
+    display: flex;
+    flex-direction: row;
+    justify-content: flex-end;
+    margin: 10px;
+}
+
+.btn {
+  margin-left: 10px;
+  margin-right: 10px;
+  background-color: var(--main-color);
+  border: none;
+  color: var(--active-color);
+}
+
+.btn:hover {
+  background-color: var(--accent-color);
+  cursor: pointer;
+}

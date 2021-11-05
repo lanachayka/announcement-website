@@ -1,6 +1,6 @@
 import Announcements from './Announcements';
 import { connect } from "react-redux";
-import { addAnnouncementAC, updateNewAnnouncementTextAC, updateNewAnnouncementTitleAC } from '../../redux/announcementsReducer';
+import { addAnnouncementAC, deleteAnnouncementAC, updateNewAnnouncementTextAC, updateNewAnnouncementTitleAC } from '../../redux/announcementsReducer';
 
 const mapStateToProps = (state) => {
   return {
@@ -21,6 +21,9 @@ const mapDispatchToProps = (dispatch) => {
     updateNewAnnouncementText: (text) => {
       dispatch(updateNewAnnouncementTextAC(text));
     },
+    deleteAnnouncement: (id) => {
+      dispatch(deleteAnnouncementAC(id))
+    }
   };
 };
 

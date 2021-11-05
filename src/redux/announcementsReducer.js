@@ -1,6 +1,7 @@
 const UPDATE_NEW_ANNOUNCEMENT_TITLE = "UPDATE-NEW-ANNOUNCEMENT-TITLE";
 const UPDATE_NEW_ANNOUNCEMENT_TEXT = "UPDATE-NEW-ANNOUNCEMENT-TEXT";
 const ADD_ANNOUNCEMENT = "ADD-ANNOUNCEMENT";
+const DELETE_ANNOUNCEMENT = "DELETE-ANNOUNCEMENT";
 const dayjs = require('dayjs')
 
 const initialState = {
@@ -42,6 +43,14 @@ const announcementsReducer = (state = initialState, action) => {
         newAnnouncementText: "",
       };
     }
+    case DELETE_ANNOUNCEMENT: {
+      const newState = {
+        ...state, announcementData: [
+          ...state.announcementData]
+      };
+      const filterdState = newState.announcementData.filter(el => el.id !== action.id);
+      return { ...state, announcementData: filterdState };
+    }
     default:
       return state;
   }
@@ -58,3 +67,4 @@ export const updateNewAnnouncementTextAC = (newText) => ({
   newText: newText,
 });
 export const addAnnouncementAC = () => ({ type: ADD_ANNOUNCEMENT });
+export const deleteAnnouncementAC = (id) => ({ type: DELETE_ANNOUNCEMENT, id:id });

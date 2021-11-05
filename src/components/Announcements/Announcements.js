@@ -17,9 +17,11 @@ export default function Announcements(props) {
         {props.announcementData.map((item) => (
           <Item
             key={item.id}
+            id={item.id}
             title={item.title}
             description={item.description}
             dateAdded={item.dateAdded}
+            deleteAnnouncement={props.deleteAnnouncement}
           />
         ))}
       </div>
