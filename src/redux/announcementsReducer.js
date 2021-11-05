@@ -16,11 +16,11 @@ const initialState = {
   newAnnouncementText: "",
 };
 
-const announcementReducer = (state = initialState, action) => {
+const announcementsReducer = (state = initialState, action) => {
       return state;
 };
 
-export default announcementReducer;
+export default announcementsReducer;
 
 export const addAnnouncementAC = () => ({ type: ADD_ANNOUNCEMENT });
 export const updateNewAnnouncementTextAC = (newText) => ({

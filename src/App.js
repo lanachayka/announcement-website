@@ -1,10 +1,15 @@
 import './App.css';
-import NoticeBoard from "./components/NoticeBoard/NoticeBoard";
+import AnnouncementsContainer from './components/Announcements/AnnouncementsContainer';
+import NewAnnouncement from './components/NewAnnouncement/NewAnnouncement';
 
 function App() {
   return (
-    <div className="app-wrapper">
-      <NoticeBoard />
+    <div className="wrapper">
+      <h1 className="title">Notice Board</h1>
+      <div className="mainContetnt">
+        <NewAnnouncement />
+        <AnnouncementsContainer />
+      </div>
     </div>
   );
 }

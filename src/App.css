@@ -1,6 +1,6 @@
 @import url("https://fonts.googleapis.com/css2?family=Kaisei+Opti:wght@500&display=swap");
 
-.app-wrapper {
+.wrapper {
   --main-color: rgb(25, 15, 71);
   --accent-color: rgb(72, 237, 243);
   --active-color: white;
@@ -8,4 +8,16 @@
   display: flex;
   flex-direction: column;
   align-items: center;
+  max-width: 980px;
+  margin: auto;
+}
+
+.mainContetnt {
+  display: grid;
+  grid-template-columns: 1fr 2fr;
+}
+
+.title {
+  color: var(--main-color);
+  text-align: center;
 }

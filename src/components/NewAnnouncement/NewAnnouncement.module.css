@@ -1,20 +1,7 @@
-.mainContetnt {
-  display: grid;
-  grid-template-columns: 1fr 2fr;
-}
-
-.title {
-  color: var(--main-color);
-  text-align: center;
-}
-
-.wrapper .addNew {
+.wrapper {
   display: flex;
   flex-direction: column;
   align-items: center;
-}
-
-.addNew {
   margin-right: 50px;
 }
 
