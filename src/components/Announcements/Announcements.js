@@ -9,9 +9,18 @@ export default function Announcements(props) {
   const searchByTitle = (event) => {
     setFilter(event.target.value.toLowerCase());
   }
-  const titleRef = React.createRef();
-  const textRef = React.createRef();
-  const dateRef = React.createRef();
+  const [showTitle, setShowTitle] = useState(true);
+  const onTitleShow = (event) => {
+    setShowTitle(event.target.checked);
+  }
+  const [showText, setShowText] = useState(true);
+  const onTextShow = (event) => {
+    setShowText(event.target.checked);
+  };
+  const [showDate, setShowDate] = useState(true);
+  const onDateShow = (event) => {
+    setShowDate(event.target.checked);
+  };
   return (
     <div className={style.wrapper}>
       <NewAnnouncement
@@ -29,15 +38,20 @@ export default function Announcements(props) {
         <div>
           <p>Select Details:</p>
           <label>
-            <input type="checkbox" defaultChecked ref={titleRef}></input>Title
+            <input
+              type="checkbox"
+              defaultChecked
+              onChange={onTitleShow}
+            ></input>
+            Title
           </label>
           <label>
-            <input type="checkbox" defaultChecked ref={textRef}></input>
+            <input type="checkbox" defaultChecked onChange={onTextShow}></input>
             Description
           </label>
           <label>
-            <input type="checkbox" defaultChecked ref={dateRef}></input>Date
-            Added
+            <input type="checkbox" defaultChecked onChange={onDateShow}></input>
+            Date Added
           </label>
         </div>
         {props.announcementData
@@ -46,9 +60,9 @@ export default function Announcements(props) {
             <Item
               key={item.id}
               id={item.id}
-              title={item.title}
-              description={item.description}
-              dateAdded={item.dateAdded}
+              title={showTitle ? item.title : ""}
+              description={showText ? item.description : ""}
+              dateAdded={showDate ? item.dateAdded : ""}
               deleteAnnouncement={props.deleteAnnouncement}
               updateNewAnnouncementText={props.updateNewAnnouncementText}
               newAnnouncementText={props.newAnnouncementText}
