@@ -45,12 +45,15 @@ export default function Item(props) {
             className={style.editPlace}
             value={props.newAnnouncementText}
           ></textarea>
-          <button onClick={sumbitChanges} className={style.btn}>Submit Changes</button>
+          <button onClick={sumbitChanges} className={style.btn}>
+            Submit Changes
+          </button>
         </div>
       ) : (
         <div>
           <h3 className={style.title}>{props.title}</h3>
           <p className={style.text}>{props.description}</p>
+          <p className={style.text}>{props.dateAdded}</p>
         </div>
       )}
     </div>

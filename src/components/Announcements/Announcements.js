@@ -1,4 +1,4 @@
-import React from 'react'
+import React, { createRef } from 'react'
 import Item from './Item/Item'
 import NewAnnouncement from './NewAnnouncement/NewAnnouncement';
 import style from "./Announcements.module.css"
@@ -9,6 +9,9 @@ export default function Announcements(props) {
   const searchByTitle = (event) => {
     setFilter(event.target.value.toLowerCase());
   }
+  const titleRef = React.createRef();
+  const textRef = React.createRef();
+  const dateRef = React.createRef();
   return (
     <div className={style.wrapper}>
       <NewAnnouncement
@@ -23,21 +26,37 @@ export default function Announcements(props) {
           <p>Search by Title</p>
           <input onChange={searchByTitle} className={style.searchInput}></input>
         </div>
-        {props.announcementData.filter(el=>el.title.toLowerCase().includes(filter)).map((item) => (
-          <Item
-            key={item.id}
-            id={item.id}
-            title={item.title}
-            description={item.description}
-            dateAdded={item.dateAdded}
-            deleteAnnouncement={props.deleteAnnouncement}
-            updateNewAnnouncementText={props.updateNewAnnouncementText}
-            newAnnouncementText={props.newAnnouncementText}
-            updateNewAnnouncementTitle={props.updateNewAnnouncementTitle}
-            newAnnouncementTitle={props.newAnnouncementTitle}
-            editAnnouncement={props.editAnnouncement}
-          />
-        ))}
+        <div>
+          <p>Select Details:</p>
+          <label>
+            <input type="checkbox" defaultChecked ref={titleRef}></input>Title
+          </label>
+          <label>
+            <input type="checkbox" defaultChecked ref={textRef}></input>
+            Description
+          </label>
+          <label>
+            <input type="checkbox" defaultChecked ref={dateRef}></input>Date
+            Added
+          </label>
+        </div>
+        {props.announcementData
+          .filter((el) => el.title.toLowerCase().includes(filter))
+          .map((item) => (
+            <Item
+              key={item.id}
+              id={item.id}
+              title={item.title}
+              description={item.description}
+              dateAdded={item.dateAdded}
+              deleteAnnouncement={props.deleteAnnouncement}
+              updateNewAnnouncementText={props.updateNewAnnouncementText}
+              newAnnouncementText={props.newAnnouncementText}
+              updateNewAnnouncementTitle={props.updateNewAnnouncementTitle}
+              newAnnouncementTitle={props.newAnnouncementTitle}
+              editAnnouncement={props.editAnnouncement}
+            />
+          ))}
       </div>
     </div>
   );
