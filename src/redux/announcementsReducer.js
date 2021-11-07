@@ -35,6 +35,13 @@ const initialState = {
         "We will sell house potatoes and anouther vegetables, specify the price 0501042169",
       dateAdded: "01.09.2021",
     },
+    {
+      id: 5,
+      title: "Lost Dog!",
+      description:
+        "Dog missing in the Central Park. If you see him please phone 0789 324775",
+      dateAdded: "07.09.2021",
+    },
   ],
   newAnnouncementTitle: "",
   newAnnouncementText: "",
