@@ -1,18 +1,19 @@
-import React, { createRef } from 'react'
-import Item from './Item/Item'
-import NewAnnouncement from './NewAnnouncement/NewAnnouncement';
-import style from "./Announcements.module.css"
+import React from "react";
+import Item from "./Item/Item";
+import NewAnnouncement from "./NewAnnouncement/NewAnnouncement";
+import style from "./Announcements.module.css";
 import { useState } from "react";
+import SimilarItems from "./SimilarItems/SimilarItems";
 
 export default function Announcements(props) {
-  const [filter, setFilter] = useState("")
+  const [filter, setFilter] = useState("");
   const searchByTitle = (event) => {
     setFilter(event.target.value.toLowerCase());
-  }
+  };
   const [showTitle, setShowTitle] = useState(true);
   const onTitleShow = (event) => {
     setShowTitle(event.target.checked);
-  }
+  };
   const [showText, setShowText] = useState(true);
   const onTextShow = (event) => {
     setShowText(event.target.checked);
@@ -71,6 +72,8 @@ export default function Announcements(props) {
               editAnnouncement={props.editAnnouncement}
             />
           ))}
+        <hr className={style.line} />
+        <SimilarItems />
       </div>
     </div>
   );

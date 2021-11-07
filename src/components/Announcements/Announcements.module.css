@@ -27,3 +27,9 @@
   background-color: var(--accent-color);
   cursor: pointer;
 }
+
+.line {
+  margin-top: 20px;
+  height: 5px;
+  background-color: var(--main-color);
+}

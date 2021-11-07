@@ -14,8 +14,8 @@ export default function NewAnnouncement({
     }
   };
   const onTitleChange = (event) => {
-    updateNewAnnouncementTitle(event.target.value)
-  }
+    updateNewAnnouncementTitle(event.target.value);
+  };
   const onTextChange = (event) => {
     updateNewAnnouncementText(event.target.value);
   };

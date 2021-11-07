@@ -1,27 +1,27 @@
-.wrapper{
-    border-color: var(--main-color);
-    border-style: solid;
-    border-radius: 15px;
-    margin-top: 20px;
+.wrapper {
+  border-color: var(--main-color);
+  border-style: solid;
+  border-radius: 15px;
+  margin-top: 20px;
 }
 
-.title{
-    color: var(--accent-color);
-    padding-left: 10px;
-    padding-right: 10px
+.title {
+  color: var(--accent-color);
+  padding-left: 10px;
+  padding-right: 10px;
 }
 
-.text{
-    color: var(--main-color);
-    padding-left: 10px;
-    padding-right: 10px
+.text {
+  color: var(--main-color);
+  padding-left: 10px;
+  padding-right: 10px;
 }
 
 .buttons {
-    display: flex;
-    flex-direction: row;
-    justify-content: flex-end;
-    margin: 10px;
+  display: flex;
+  flex-direction: row;
+  justify-content: flex-end;
+  margin: 10px;
 }
 
 .btn {
@@ -43,7 +43,7 @@
   align-items: flex-start;
 }
 
-.editPlace{
+.editPlace {
   padding-left: 10px;
   padding-right: 10px;
   width: 80%;

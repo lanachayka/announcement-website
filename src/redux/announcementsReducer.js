@@ -114,5 +114,3 @@ export const editAnnouncementAC = (id) => ({
   type: EDIT_ANNOUNCEMENT,
   id: id,
 });
-
-

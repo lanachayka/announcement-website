@@ -1,6 +1,12 @@
-import Announcements from './Announcements';
+import Announcements from "./Announcements";
 import { connect } from "react-redux";
-import { addAnnouncementAC, deleteAnnouncementAC, editAnnouncementAC, resetSearchAC, searchAnnouncementAC, updateNewAnnouncementTextAC, updateNewAnnouncementTitleAC } from '../../redux/announcementsReducer';
+import {
+  addAnnouncementAC,
+  deleteAnnouncementAC,
+  editAnnouncementAC,
+  updateNewAnnouncementTextAC,
+  updateNewAnnouncementTitleAC,
+} from "../../redux/announcementsReducer";
 
 const mapStateToProps = (state) => {
   return {
@@ -26,7 +32,7 @@ const mapDispatchToProps = (dispatch) => {
     },
     editAnnouncement: (id) => {
       dispatch(editAnnouncementAC(id));
-    }
+    },
   };
 };
 
