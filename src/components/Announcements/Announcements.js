@@ -4,13 +4,25 @@ import NewAnnouncement from "./NewAnnouncement/NewAnnouncement";
 import style from "./Announcements.module.css";
 import { useState } from "react";
 import SimilarItems from "./SimilarItems/SimilarItems";
+import { useSelector, useDispatch } from "react-redux";
+import {
+  addAnnouncement,
+  deleteAnnouncement,
+  editAnnouncement,
+  updateNewAnnouncementText,
+  updateNewAnnouncementTitle,
+} from "../../redux/announcementsReducer";
 
-export default function Announcements(props) {
+export default function Announcements() {
+
+  const state = useSelector(state => state.announcements);
+  const dispatch = useDispatch();
+  
   const [filter, setFilter] = useState("");
   const searchByTitle = (event) => {
     setFilter(event.target.value.toLowerCase());
   };
-  const filtredData = props.announcementData.filter((el) =>
+  const filtredData = state.announcementData.filter((el) =>
     el.title.toLowerCase().includes(filter)
   );
   const [showTitle, setShowTitle] = useState(true);
@@ -52,11 +64,11 @@ export default function Announcements(props) {
   return (
     <div className={style.wrapper}>
       <NewAnnouncement
-        newAnnouncementTitle={props.newAnnouncementTitle}
-        newAnnouncementText={props.newAnnouncementText}
-        addAnnouncement={props.addAnnouncement}
-        updateNewAnnouncementTitle={props.updateNewAnnouncementTitle}
-        updateNewAnnouncementText={props.updateNewAnnouncementText}
+        newAnnouncementTitle={state.newAnnouncementTitle}
+        newAnnouncementText={state.newAnnouncementText}
+        addAnnouncement={()=>dispatch(addAnnouncement())}
+        updateNewAnnouncementTitle={(title)=>dispatch(updateNewAnnouncementTitle(title))}
+        updateNewAnnouncementText={(text)=>dispatch(updateNewAnnouncementText(text))}
       />
       <div>
         <div className={style.search}>
@@ -89,19 +101,19 @@ export default function Announcements(props) {
             title={showTitle ? item.title : ""}
             description={showText ? item.description : ""}
             dateAdded={showDate ? item.dateAdded : ""}
-            deleteAnnouncement={props.deleteAnnouncement}
-            updateNewAnnouncementText={props.updateNewAnnouncementText}
-            newAnnouncementText={props.newAnnouncementText}
-            updateNewAnnouncementTitle={props.updateNewAnnouncementTitle}
-            newAnnouncementTitle={props.newAnnouncementTitle}
-            editAnnouncement={props.editAnnouncement}
+            deleteAnnouncement={(id)=>dispatch(deleteAnnouncement(id))}
+            updateNewAnnouncementText={(text)=>dispatch(updateNewAnnouncementText(text))}
+            newAnnouncementText={state.newAnnouncementText}
+            updateNewAnnouncementTitle={(title)=>dispatch(updateNewAnnouncementTitle(title))}
+            newAnnouncementTitle={state.newAnnouncementTitle}
+            editAnnouncement={(id)=>dispatch(editAnnouncement(id))}
           />
         ))}
         {filtredData.length === 1 &&
           findSimiliar(
             filtredData[0].title,
             filtredData[0].description,
-            props.announcementData
+            state.announcementData
           )}
         {similiar.filter((el) => el !== filtredData[0]).length <= 3
           ? similiar

@@ -104,20 +104,20 @@ const announcementsReducer = (state = initialState, action) => {
 
 export default announcementsReducer;
 
-export const updateNewAnnouncementTitleAC = (newTitle) => ({
+export const updateNewAnnouncementTitle = (newTitle) => ({
   type: UPDATE_NEW_ANNOUNCEMENT_TITLE,
   newTitle: newTitle,
 });
-export const updateNewAnnouncementTextAC = (newText) => ({
+export const updateNewAnnouncementText = (newText) => ({
   type: UPDATE_NEW_ANNOUNCEMENT_TEXT,
   newText: newText,
 });
-export const addAnnouncementAC = () => ({ type: ADD_ANNOUNCEMENT });
-export const deleteAnnouncementAC = (id) => ({
+export const addAnnouncement = () => ({ type: ADD_ANNOUNCEMENT });
+export const deleteAnnouncement = (id) => ({
   type: DELETE_ANNOUNCEMENT,
   id: id,
 });
-export const editAnnouncementAC = (id) => ({
+export const editAnnouncement = (id) => ({
   type: EDIT_ANNOUNCEMENT,
   id: id,
 });
