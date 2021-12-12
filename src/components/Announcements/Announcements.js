@@ -4,19 +4,12 @@ import NewAnnouncement from "./NewAnnouncement/NewAnnouncement";
 import style from "./Announcements.module.css";
 import { useState } from "react";
 import SimilarItems from "./SimilarItems/SimilarItems";
-import { useSelector, useDispatch } from "react-redux";
-import {
-  addAnnouncement,
-  deleteAnnouncement,
-  editAnnouncement,
-  updateNewAnnouncementText,
-  updateNewAnnouncementTitle,
-} from "../../redux/announcementsReducer";
+import { useSelector } from "react-redux";
+import SelectDetails from "./SelectDetails/SelectDetails";
 
 export default function Announcements() {
 
   const state = useSelector(state => state.announcements);
-  const dispatch = useDispatch();
   
   const [filter, setFilter] = useState("");
   const searchByTitle = (event) => {
@@ -26,17 +19,11 @@ export default function Announcements() {
     el.title.toLowerCase().includes(filter)
   );
   const [showTitle, setShowTitle] = useState(true);
-  const onTitleShow = (event) => {
-    setShowTitle(event.target.checked);
-  };
+ 
   const [showText, setShowText] = useState(true);
-  const onTextShow = (event) => {
-    setShowText(event.target.checked);
-  };
+ 
   const [showDate, setShowDate] = useState(true);
-  const onDateShow = (event) => {
-    setShowDate(event.target.checked);
-  };
+ 
   let similiar = [];
   const findSimiliar = (title, text, data) => {
     const titleArr = title.split(" ");
@@ -63,37 +50,17 @@ export default function Announcements() {
   };
   return (
     <div className={style.wrapper}>
-      <NewAnnouncement
-        newAnnouncementTitle={state.newAnnouncementTitle}
-        newAnnouncementText={state.newAnnouncementText}
-        addAnnouncement={()=>dispatch(addAnnouncement())}
-        updateNewAnnouncementTitle={(title)=>dispatch(updateNewAnnouncementTitle(title))}
-        updateNewAnnouncementText={(text)=>dispatch(updateNewAnnouncementText(text))}
-      />
+      <NewAnnouncement />
       <div>
         <div className={style.search}>
           <p>Search by Title</p>
           <input onChange={searchByTitle} className={style.searchInput}></input>
         </div>
-        <div>
-          <p>Select Details:</p>
-          <label>
-            <input
-              type="checkbox"
-              defaultChecked
-              onChange={onTitleShow}
-            ></input>
-            Title
-          </label>
-          <label>
-            <input type="checkbox" defaultChecked onChange={onTextShow}></input>
-            Description
-          </label>
-          <label>
-            <input type="checkbox" defaultChecked onChange={onDateShow}></input>
-            Date Added
-          </label>
-        </div>
+        <SelectDetails
+          onTitleShow = {setShowTitle}
+          onTextShow={setShowText}
+          onDateShow = {setShowDate}
+        />
         {filtredData.map((item) => (
           <Item
             key={item.id}
@@ -101,12 +68,6 @@ export default function Announcements() {
             title={showTitle ? item.title : ""}
             description={showText ? item.description : ""}
             dateAdded={showDate ? item.dateAdded : ""}
-            deleteAnnouncement={(id)=>dispatch(deleteAnnouncement(id))}
-            updateNewAnnouncementText={(text)=>dispatch(updateNewAnnouncementText(text))}
-            newAnnouncementText={state.newAnnouncementText}
-            updateNewAnnouncementTitle={(title)=>dispatch(updateNewAnnouncementTitle(title))}
-            newAnnouncementTitle={state.newAnnouncementTitle}
-            editAnnouncement={(id)=>dispatch(editAnnouncement(id))}
           />
         ))}
         {filtredData.length === 1 &&

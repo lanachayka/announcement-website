@@ -1,23 +1,25 @@
 import React from "react";
 import style from "./NewAnnouncement.module.css";
+import { useSelector, useDispatch } from "react-redux";
+import { addAnnouncement, updateNewAnnouncementTitle, updateNewAnnouncementText } from '../../../redux/announcementsReducer'
 
-export default function NewAnnouncement({
-  newAnnouncementTitle,
-  newAnnouncementText,
-  addAnnouncement,
-  updateNewAnnouncementTitle,
-  updateNewAnnouncementText,
-}) {
+export default function NewAnnouncement() {
+
+  const newAnnouncementTitle = useSelector(state => state.announcements.newAnnouncementTitle);
+  const newAnnouncementText = useSelector(state => state.announcements.newAnnouncementText);
+
+  const dispatch = useDispatch();
+
   const onAddAnnouncement = () => {
     if (newAnnouncementTitle.length > 0 && newAnnouncementText.length > 0) {
-      addAnnouncement();
+      dispatch(addAnnouncement());
     }
   };
   const onTitleChange = (event) => {
-    updateNewAnnouncementTitle(event.target.value);
+    dispatch(updateNewAnnouncementTitle(event.target.value));
   };
   const onTextChange = (event) => {
-    updateNewAnnouncementText(event.target.value);
+    dispatch(updateNewAnnouncementText(event.target.value));
   };
   return (
     <div className={style.wrapper}>

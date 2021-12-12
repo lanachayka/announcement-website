@@ -3,22 +3,29 @@ import style from "./Item.module.css";
 import deleteIcon from "./delete_white_24dp.svg";
 import editIcon from "./edit_white_24dp.svg";
 import { useState } from "react";
+import { useSelector, useDispatch } from "react-redux";
+import { editAnnouncement, deleteAnnouncement, updateNewAnnouncementTitle, updateNewAnnouncementText } from '../../../redux/announcementsReducer'
 
 export default function Item(props) {
+
+  const newAnnouncementTitle = useSelector(state => state.announcements.newAnnouncementTitle);
+  const newAnnouncementText = useSelector(state => state.announcements.newAnnouncementText);
+  const dispatch = useDispatch();
+
   const [edit, setEdit] = useState(false);
   const startEdit = () => {
-    props.updateNewAnnouncementTitle(props.title);
-    props.updateNewAnnouncementText(props.description);
+    dispatch(updateNewAnnouncementTitle(props.title));
+    dispatch(updateNewAnnouncementText(props.description));
     setEdit(true);
   };
   const onTextChange = (event) => {
-    props.updateNewAnnouncementText(event.target.value);
+    dispatch(updateNewAnnouncementText(event.target.value));
   };
   const onTitleChange = (event) => {
-    props.updateNewAnnouncementTitle(event.target.value);
+    dispatch(updateNewAnnouncementTitle(event.target.value));
   };
   const sumbitChanges = () => {
-    props.editAnnouncement(props.id);
+    dispatch(editAnnouncement(props.id));
     setEdit(false);
   };
   return (
@@ -28,7 +35,7 @@ export default function Item(props) {
           <img src={editIcon} alt="edit icon" />
         </button>
         <button
-          onClick={() => props.deleteAnnouncement(props.id)}
+          onClick={() => dispatch(deleteAnnouncement(props.id))}
           className={style.btn}
         >
           <img src={deleteIcon} alt="delete icon" />
@@ -38,12 +45,12 @@ export default function Item(props) {
         <div className={style.edit}>
           <input
             onChange={onTitleChange}
-            value={props.newAnnouncementTitle}
+            value={newAnnouncementTitle}
           ></input>
           <textarea
             onChange={onTextChange}
             className={style.editPlace}
-            value={props.newAnnouncementText}
+            value={newAnnouncementText}
           ></textarea>
           <button onClick={sumbitChanges} className={style.btn}>
             Submit Changes
